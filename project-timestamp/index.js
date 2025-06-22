@@ -19,7 +19,13 @@ app.get("/", function (req, res) {
 });
 
 app.get("/api/:date?", function (req, res) {
-	let dateString = req.params.date || req.query.date;
+  let dateString = req.params.date || req.query.date;
+  // If no date is provided, use the current date
+  if (!dateString) {
+    dateString = Date.now(); // Use current timestamp if no date is provided
+  }
+
+  // If no date is provided, return the current date
 	let date;
 
 	// Check if the date is in milliseconds (Unix timestamp)
